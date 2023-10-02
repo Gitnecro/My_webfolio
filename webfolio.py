@@ -6,12 +6,6 @@ from PIL import Image
 
 st.set_page_config(layout="wide")
 
-def local_css(file_name):
-
-    with open(file_name) as f:
-        css = f"<style>{f.read()}</style>"
-        st.markdown(css, unsafe_allow_html=True)
-local_css("C:/Users/shiva/OneDrive/Desktop/work/pweb/style.css")
 
 
 
