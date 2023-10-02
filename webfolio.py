@@ -6,6 +6,15 @@ from PIL import Image
 
 st.set_page_config(layout="wide")
 
+def local_css(file_name):
+
+    with open(file_name) as f:
+        css = f"<style>{f.read()}</style>"
+        st.markdown(css, unsafe_allow_html=True)
+local_css("C:/Users/shiva/OneDrive/Desktop/work/pweb/style.css")
+
+
+
 
 def load_lottieurl(url):
     r = requests.get(url)
@@ -13,18 +22,24 @@ def load_lottieurl(url):
         return None
     return r.json()
 
-
+lottie_contact = load_lottieurl("https://lottie.host/e4df6ec2-293f-4a4b-9041-9a094cb257ce/o9nCcRcINe.json")
 lottie_coder = load_lottieurl("https://lottie.host/d058c313-ca92-4e3c-9f8e-803c97081e17/zURrJMOE6x.json")
 img = Image.open('pose.png')
 
-st.write("##")
-st.subheader("Hey there hope you are doing well :wave: ")
-st.title("Shivam Varshney")
-st.write("""
+col0 , col9 , col10 = st.columns((2,1,1))
 
-What's meant to be will always find a way .
+with col0 :
 
-""")
+    st.write("##")
+    st.subheader("Hey there hope you are doing well :wave: ")
+    st.title("Shivam Varshney")
+    st.write("""
+
+    What's meant to be will always find a way .
+
+    """)
+with col10 :
+    st.image(img)
 
 st.write('---')
 
@@ -42,6 +57,11 @@ if selected == 'About':
         st.write("##")
         st.subheader("I am Shivam Varshney")
         st.title("Undergrad at Vellore institute of technology")
+        st.write(" ## ")
+
+
+        st.write(""" I am Shivam Varshney, a sophomore from VIT Chennai's Electronics and Computer Engineering branch. I am passionate about learning new technologies, marketing, and coding, and enjoy playing table tennis. I thrive in dynamic team environments and always excited to start new projects. """)
+
     with col2:
         st_lottie(lottie_coder)
 
@@ -66,7 +86,7 @@ if selected == 'About':
             Experience
             - Committee Member
                 - IEEE Computing Society
-
+                - Part of organising committee of OG event BITWARS
 
 
 
@@ -88,3 +108,27 @@ if selected == "Projects":
 
             """)
             st.markdown("[link to my project](streamlit.io)")
+
+if selected == "Contact":
+    with st.container():
+        st.header("Get in touch!")
+
+        st.write("##")
+        st.write("##")
+        form = """ <form action="https://formsubmit.co/shivam.varshney2005@gmail.com" method="POST">
+     <label for="name">Name:</label>
+     <input type="text" id="name" name="name" required><br><br>
+     <label for="email">Email:</label>
+     <input type="email" id="email" name="email" required><br><br>
+     <label for="message">Message:</label>
+     <input type="text" id="message" name="message" required><br><br>
+     <button type="submit">Send</button>
+</form> """
+
+        col11, col12 , col13 =st.columns((2,1,1))
+        with col11:
+            st.markdown(form, unsafe_allow_html = True)
+        with col12:
+            st_lottie(lottie_contact, height=300)
+        with col13:
+            st.write(" ")
